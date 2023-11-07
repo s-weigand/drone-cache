@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"path"
 	"path/filepath"
 	"sync"
 	"time"
@@ -56,7 +57,7 @@ func (r rebuilder) Rebuild(srcs []string) error {
 			return fmt.Errorf("source <%s>, make sure file or directory exists and readable, %w", src, err)
 		}
 
-		dst := filepath.Join(namespace, key, src)
+		dst := path.Join(namespace, key, src)
 
 		// If no override is set and object already exists in storage, skip it.
 		if !r.override {
